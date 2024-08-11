@@ -67,9 +67,9 @@ public class OAuthController {
     }
 
     @PostMapping("/withdraw")
-    public ResponseEntity<ResponseWithdraw> withdraw(RequestWithdraw requestDto) {
+    public ResponseEntity<ResponseWithdraw> withdraw() {
         User user = authenticationFacade.getAuthenticatedUser();
-        isValidateRequest(user, requestDto.getEmail());
+//        isValidateRequest(user, requestDto.getEmail());
         userService.delete(user);
         refreshTokenService.deleteAllByUser(user);
         return ResponseEntity.ok(new ResponseWithdraw());
